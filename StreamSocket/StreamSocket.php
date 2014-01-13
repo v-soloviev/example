@@ -53,7 +53,7 @@ class StreamSocket {
      */
     public static function server(){
         if(is_null(self::$server))
-            throw new StreamSocketException("The server is not initialized, you must first call StreamSocket::factory()");
+            throw new StreamSocketException('The server is not initialized, you must first call StreamSocket::factory()');
         
         return self::$server;
     }
