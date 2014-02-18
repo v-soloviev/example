@@ -37,7 +37,7 @@ class StreamSocket {
         if(file_exists(__DIR__ . "/libs/{$class}.php"))
             require(__DIR__ . "/libs/{$class}.php");
         
-        if(! class_exists($class))
+        if(! class_exists($class, false))
             throw new StreamSocketException("{$class} not found.");
         
         self::$server = new $class();
@@ -72,6 +72,7 @@ class StreamSocket {
      *  Is there a channel
      *
      *  @var (string) name - The channel name
+     *  @return (bool)
      */
     public static function hasChannel($name){
         return in_array($name, self::$channels);
@@ -89,8 +90,9 @@ class StreamSocket {
     }
     
     /**
+     *  Create JavaScript array
      *
-     *
+     *  @return (string) - js array
      */
     public static function channelsAsJsArray(){
         $code = '[';
